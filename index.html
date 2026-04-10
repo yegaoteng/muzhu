@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>雷霆母猪和她的雷霆猪弟</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Microsoft YaHei', sans-serif;
+        }
+        
+        body {
+            background-color: #0f1419;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #2a2f36;
+        }
+        
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .subtitle {
+            color: #a0a0a0;
+            font-size: 1.1rem;
+        }
+        
+        .content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .poster-section {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .poster {
+            width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+        
+        .poster:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-section {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .info-card {
+            background: linear-gradient(145deg, #1a1f26, #151a20);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            color: #4ecdc4;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .info-title i {
+            font-size: 1.2rem;
+        }
+        
+        .director, .stars, .genre, .release-date {
+            display: flex;
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px dashed #2a2f36;
+        }
+        
+        .label {
+            font-weight: bold;
+            color: #ff6b6b;
+            min-width: 80px;
+        }
+        
+        .value {
+            color: #c0c0c0;
+        }
+        
+        .synopsis {
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .episodes-section {
+            margin-top: 20px;
+        }
+        
+        .episodes-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .episodes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .episode-item {
+            background: linear-gradient(145deg, #1a1f26, #151a20);
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #2a2f36;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .episode-item:hover {
+            transform: translateX(5px);
+            border-color: #4ecdc4;
+            box-shadow: 0 5px 15px rgba(78, 205, 196, 0.2);
+        }
+        
+        .episode-info {
+            flex: 1;
+        }
+        
+        .episode-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+        
+        .episode-desc {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+        
+        .episode-meta {
+            display: flex;
+            gap: 20px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+        
+        .watch-btn {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .watch-btn:hover {
+            background-color: #ff5252;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.9rem;
+            border-top: 1px solid #2a2f36;
+            margin-top: 30px;
+        }
+        
+        .rating {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+        
+        .stars-rating {
+            color: #ffc107;
+            margin-right: 10px;
+        }
+        
+        .rating-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ffc107;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .episode-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .watch-btn {
+                align-self: flex-end;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* 添加一些动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.5s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        
+        .hidden { opacity: 0; }
+        
+        .episode-number {
+            display: inline-block;
+            background-color: #4ecdc4;
+            color: #0f1419;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>雷霆母猪和她的雷霆猪弟-4k</h1>
+            <p class="subtitle">一部由小猪佩奇改编的二创作品</p>
+        </header>
+        
+        <div class="content">
+            <div class="poster-section fade-in">
+                <img src="/img/fm.jpg" alt="封面" class="poster">
+                <div class="rating">
+                    <div class="stars-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <div class="rating-value">9/10</div>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-card fade-in delay-1">
+                    <h2 class="info-title"><i class="fas fa-info-circle"></i> 剧集信息</h2>
+                    
+                    <div class="director">
+                        <div class="label">导演：</div>
+                        <div class="value">温**</div>
+                    </div>
+                    
+                    <div class="stars">
+                        <div class="label">主演:</div>
+                        <div class="value">雷霆母猪一家</div>
+                    </div>
+                    
+                    <div class="genre">
+                        <div class="label">类型：</div>
+                        <div class="value">抽象</div>
+                    </div>
+                    
+                    <div class="release-date">
+                        <div class="label">上映：</div>
+                        <div class="value">2026年3月2日</div>
+                    </div>
+                </div>
+                
+                <div class="info-card fade-in delay-2">
+                    <h2 class="info-title"><i class="fas fa-book-open"></i> 剧情简介</h2>
+                    <p class="synopsis">
+                        雷霆母猪一家生活的趣事。
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="episodes-section fade-in delay-3">
+            <div class="episodes-header">
+                <h2 class="info-title"><i class="fas fa-list"></i> 剧集列表</h2>
+                <div class="subtitle">共15集，每周更新</div>
+            </div>
+            
+            <div class="episodes-list">
+                <!-- 剧集将通过JavaScript动态生成 -->
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p></p>
+    </footer>
+
+    <script>
+        // 剧集数据
+        const episodes = [
+            { id: 1, title: "跳泥猪", duration: "", desc: "", link: "/img/1.jpg" },
+            { id: 2, title: "雷霆一家", duration: "", desc: "在执行任务时，林枫意外遇到了来自过去的苏雨", link: "/img/2.jpg" },
+            { id: 3, title: "母猪上学", duration: "50分钟", desc: "林枫发现自己的行为可能引发时间悖论", link: "/img/3.jpg" },
+            { id: 4, title: "午夜惊猪(上)", duration: "49分钟", desc: "林枫和苏雨的感情逐渐升温，但跨越时间的爱情是被禁止的", link: "/img/4.jpg" },
+            { id: 5, title: "午夜惊猪(下)", duration: "52分钟", desc: "时间线出现异常裂缝，林枫必须查明原因", link: "/img/5.jpg" },
+            { id: 6, title: "母猪献祭(上)", duration: "48分钟", desc: "林枫必须在职责和爱情之间做出艰难选择", link: "/img/6.jpg" },
+            { id: 7, title: "母猪献祭(下)", duration: "51分钟", desc: "林枫发现另一个时间线中的自己做出了不同选择", link: "/img/7.jpg" },
+            { id: 8, title: "上太空的猪", duration: "55分钟", desc: "时间管理局的秘密被揭开，林枫面临最终考验", link: "/img/8.jpg" },
+            { id: 9, title: "坐自行车", duration: "51分钟", desc: "林枫发现另一个时间线中的自己做出了不同选择", link: "/img/9.jpg" },
+            { id: 10, title: "雨滴事件(上)", duration: "51分钟", desc: "林枫发现另一个时间线中的自己做出了不同选择", link: "/img/10.jpg" },
+            { id: 11, title: "雨滴事件(下)", duration: "51分钟", desc: "林枫发现另一个时间线中的自己做出了不同选择", link: "/img/11.jpg" },
+            { id: 12, title: "露营", duration: "51分钟", desc: "林枫发现另一个时间线中的自己做出了不同选择", link: "/img/12.jpg" },
+            { id: 13, title: "五口之家(上)", duration: "51分钟", desc: "林枫发现另一个时间线中的自己做出了不同选择", link: "/img/13.jpg" },
+            { id: 14, title: "五口之家(下)", duration: "51分钟", desc: "林枫发现另一个时间线中的自己做出了不同选择", link: "/img/14.jpg" },
+            { id: 15, title: "美丽的猪奶", duration: "51分钟", desc: "林枫发现另一个时间线中的自己做出了不同选择", link: "/img/15.jpg" }
+        ];
+        
+        // 动态生成剧集列表
+        document.addEventListener('DOMContentLoaded', function() {
+            const episodesList = document.querySelector('.episodes-list');
+            
+            episodes.forEach(episode => {
+                const episodeItem = document.createElement('div');
+                episodeItem.className = 'episode-item fade-in hidden';
+                episodeItem.innerHTML = `
+                    <div class="episode-info">
+                        <div class="episode-title">
+                            <span class="episode-number">${episode.id}</span>
+                            ${episode.title}
+                        </div>
+                        <div class="episode-desc"></div>
+                        <div class="episode-meta">
+                            <span><i class="far fa-clock"></i></span>
+                            <span><i class="far fa-calendar"></i></span>
+                        </div>
+                    </div>
+                    <a href="${episode.link}" target="_blank" class="watch-btn">观看 <i class="fas fa-play"></i></a>
+                `;
+                
+                episodesList.appendChild(episodeItem);
+            });
+            
+            // 添加动画效果
+            setTimeout(() => {
+                const hiddenElements = document.querySelectorAll('.hidden');
+                hiddenElements.forEach((el, index) => {
+                    setTimeout(() => {
+                        el.classList.remove('hidden');
+                    }, index * 100);
+                });
+            }, 300);
+            
+            // 为剧集项添加点击效果
+            document.querySelectorAll('.episode-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    if (!e.target.classList.contains('watch-btn') && !e.target.closest('.watch-btn')) {
+                        const link = this.querySelector('a').href;
+                        // 在实际应用中，这里可以添加统计代码或播放逻辑
+                        console.log(`跳转到剧集链接: ${link}`);
+                        // 如果需要点击整个卡片跳转，可以取消下面这行注释
+                        // window.open(link, '_blank');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
